@@ -13,3 +13,34 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+//Emilio Galvez
+private static void mostrarTotalCompra(float subtotal, Receptor receptor) {
+    DecimalFormat df = new DecimalFormat("#.##");
+    float valorIva = subtotal * IVA;
+    float totalConIVA = subtotal + valorIva;
+
+    System.out.println("\n\t| --- Factura --- |\n");
+    System.out.println("| Receptor: " + receptor);
+    System.out.println("| SUBTOTAL: $" + df.format(subtotal));
+    System.out.println("| IVA (15%): $" + df.format(valorIva));
+    System.out.println("| TOTAL A PAGAR: $" + df.format(totalConIVA));
+}
+
+private static String validarCedulaProvincia(String cedulaORuc) {
+    if (cedulaORuc.length() >= 10) {
+        String codigoProvincia = cedulaORuc.substring(0, 2);
+        switch (codigoProvincia) {
+            case "01": return "Azuay";
+            case "02": return "Bolivar";
+            case "03": return "Cañar";
+            // Otros casos omitidos por brevedad...
+            default: return null;
+        }
+    } else {
+        return null;
+    }
+}
+
+private static boolean validadorCelular(String numCelular) {
+    return numCelular.startsWith("09") && numCelular.length() == 10;
